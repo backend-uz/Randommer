@@ -28,7 +28,6 @@ class Card(Randommer):
             list: list of types
         '''
         headers = {"X-Api-Key":api_key}
-
         r = requests.get(f'{self.get_url()}Card/types', headers=headers)
         return r.json()
 
