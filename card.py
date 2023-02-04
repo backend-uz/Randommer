@@ -1,4 +1,4 @@
-import requests
+import requests, json
 from randommer import Randommer
 
 
@@ -13,7 +13,10 @@ class Card(Randommer):
         Returns:
             dict: card data
         '''
-        pass
+        headers = {"X-Api-Key":api_key}
+
+        r = requests.get(f'{self.get_url()}Card', headers=headers)
+        return r.json()
 
     def get_card_types(self, api_key: str) -> list:
         '''get cars types from randommer
@@ -24,4 +27,11 @@ class Card(Randommer):
         Returns:
             list: list of types
         '''
-        pass
+        headers = {"X-Api-Key":api_key}
+
+        r = requests.get(f'{self.get_url()}Card/types', headers=headers)
+        return r.json()
+
+card = Card()
+key = "689160d3ed5c445a8ddf7b1820957a75"
+print(card.get_card_types(key))
